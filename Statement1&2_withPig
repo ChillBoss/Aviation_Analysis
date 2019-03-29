@@ -1,0 +1,20 @@
+Q1. Top 5 visited destination.
+
+A = load '/user/tmp/DelayedFlights.csv' USING org.apache.pig.piggybank.storage.CSVExcelStorage(',','NO_MULTILINE','UNIX','SKIP_INPUT_HEADER');
+B = foreach A generate (int)$1 as year, (int)$10 as flight_num, (chararray)$17 as origin,(chararray) $18 as dest;
+C = filter B by dest is not null;
+D = group C by dest;
+E = foreach D generate group, COUNT(C.dest);
+F = order E by $1 DESC;
+Result = LIMIT F 5;
+
+Q2 Which month has the most number of cancellations due to bad weather?
+
+A = load '/user/tmp/DelayedFlights.csv' USING org.apache.pig.piggybank.storage.CSVExcelStorage(',','NO_MULTILINE','UNIX','SKIP_INPUT_HEADER');
+B = foreach A generate (int)$2 as month,(int)$10 as flight_num,(int)$22 as cancelled,(chararray)$23 as cancel_code;
+C = filter B by cancelled == 1 AND cancel_code =='B';
+D = group C by month;
+E = foreach D generate group, COUNT(C.cancelled);
+F= order E by $1 DESC;
+Result = limit F 1;
+dump Result;
