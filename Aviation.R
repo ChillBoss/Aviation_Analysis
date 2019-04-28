@@ -1,0 +1,28 @@
+air.df <- read.csv(paste("DelayedFlights.csv"))
+
+summary(air.df)
+
+View(air.df)
+
+library(psych)
+describe(air.df)
+describe(air.df$ArrTime)
+describe(air.df[ , c(2, 4:9)])
+
+boxplot(air.df$DepTime,main ="Departure Time", col=c("red"))
+boxplot(air.df$CRSDepTime,main ="CRS Departure Time", col=c("red"))
+boxplot(air.df$ArrTime,main ="Arrival Time", col=c("blue"))
+boxplot(air.df$CRSArrTime,main ="CRS Arrival Time", col=c("yellow"))
+boxplot(air.df$ActualElapsedTime,main ="Actual elapsed Time", col=c("yellow"))
+boxplot(air.df$CRSElapsedTime,main ="CRS elapsed Time", col=c("yellow"))
+boxplot(air.df$AirTime,main ="Air Time", col=c("yellow"))
+boxplot(air.df$ArrDelay,main ="Arr Delay", col=c("red"))
+boxplot(air.df$DepDelay,main ="Dep Delay", col=c("blue"))
+boxplot(air.df$Distance,main ="distance", col=c("blue"))
+boxplot(air.df$TaxiIn,main ="Taxi in", col=c("blue"))
+boxplot(air.df$TaxiOut,main ="Taxi out", col=c("blue"))
+boxplot(air.df$CarrierDelay,main ="carrier delay", col=c("red"))
+boxplot(air.df$WeatherDelay,main ="weather delay", col=c("red"))
+boxplot(air.df$NASDelay,main ="NAS delay", col=c("red"))
+boxplot(air.df$SecurityDelay,main ="security delay", col=c("red"))
+boxplot(air.df$LateAircraftDelay,main ="late aircraft delay", col=c("red"))
